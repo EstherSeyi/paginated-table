@@ -8,11 +8,13 @@ const startApp = async () => {
       paging: {},
     },
   };
-  // Get a reference to the table
+
+  // Get a reference to the table, error and buttons
   const tableRef: any = document.querySelector("#pag-table > tbody");
   const errorRef: any = document.querySelector("#error");
   const nextButton = document.querySelector("#next");
   const prevButton = document.querySelector("#prev");
+
   errorRef.innerHTML = "";
 
   /**
