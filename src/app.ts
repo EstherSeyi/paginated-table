@@ -1,13 +1,13 @@
 import fetchData from "./helpers/fetch";
-
-type User = {
-  age: number;
-  gender: string;
-  id: string;
-  row: number;
-};
+import displayTableData from "./helpers/display-table";
 
 const startApp = async () => {
+  const state = {
+    currentPage: 0,
+    availableData: {
+      paging: {},
+    },
+  };
   // Get a reference to the table
   const tableRef: any = document.querySelector("#pag-table > tbody");
   const errorRef: any = document.querySelector("#error");
@@ -15,33 +15,81 @@ const startApp = async () => {
   const prevButton = document.querySelector("#prev");
   errorRef.innerHTML = "";
 
-  nextButton?.addEventListener("click", () => {
-    console.log("next");
+  /**
+   * onClick of next button
+   */
+  nextButton?.addEventListener("click", async () => {
+    if (!state.availableData.paging.hasOwnProperty("next")) {
+      console.log("no next");
+      //TODO: Disable next button
+      return;
+    }
+
+    nextButton.innerHTML = "Loading...";
+    const nextPage = state.currentPage + 1;
+    if (state.availableData.hasOwnProperty(nextPage)) {
+      // if data is available for prev fetching
+      displayTableData(state.availableData[`${nextPage}`], tableRef);
+    } else {
+      await fetchData(
+        `https://randomapi.com/api/8csrgnjw?key=LEIX-GF3O-AG7I-6J84&page=${nextPage}`,
+        (response) => {
+          const [data] = response;
+          state.availableData = data;
+          displayTableData(data[`${nextPage}`], tableRef);
+        },
+        (error) => {
+          errorRef.style.color = "red";
+          errorRef.style.marginBottom = "1em";
+          errorRef.innerHTML = error;
+        }
+      );
+    }
+    state.currentPage++;
+    nextButton.innerHTML = "Next";
   });
 
-  prevButton?.addEventListener("click", () => {
-    console.log("prev");
+  /**
+   * onClick of prev button
+   */
+  prevButton?.addEventListener("click", async () => {
+    if (!state.availableData.paging.hasOwnProperty("previous")) {
+      console.log("no prev!!!");
+      //TODO: Disable prev button
+      return;
+    }
+
+    prevButton.innerHTML = "Loading...";
+    const prevPage = state.currentPage - 1;
+    if (state.availableData.hasOwnProperty(prevPage)) {
+      // if data is available for prev fetching
+      displayTableData(state.availableData[`${prevPage}`], tableRef);
+    } else {
+      await fetchData(
+        `https://randomapi.com/api/8csrgnjw?key=LEIX-GF3O-AG7I-6J84&page=${prevPage}`,
+        (response) => {
+          const [data] = response;
+          state.availableData = data;
+          displayTableData(data[`${prevPage}`], tableRef);
+        },
+        (error) => {
+          errorRef.style.color = "red";
+          errorRef.style.marginBottom = "1em";
+          errorRef.innerHTML = error;
+        }
+      );
+    }
+    state.currentPage--;
+    prevButton.innerHTML = "Previous";
   });
 
   await fetchData(
     "https://randomapi.com/api/8csrgnjw?key=LEIX-GF3O-AG7I-6J84",
     (response) => {
-      const [{ 1: users1, paging, ...rest }] = response;
-      console.log(users1, rest, paging, window.location.href);
-
-      users1.forEach((user: User) => {
-        // Insert a row at the end of the table
-        let newRow = tableRef?.insertRow(-1);
-
-        //insert cells for row, gender and age
-        let row = newRow.insertCell(0);
-        let gender = newRow.insertCell(1);
-        let age = newRow.insertCell(2);
-
-        row.appendChild(document.createTextNode(`${user.row}`));
-        gender.appendChild(document.createTextNode(user.gender));
-        age.appendChild(document.createTextNode(`${user.age}`));
-      });
+      const [data] = response;
+      state.currentPage = 1;
+      state.availableData = data;
+      displayTableData(data["1"], tableRef, true);
     },
     (error) => {
       errorRef.style.color = "red";
