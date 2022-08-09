@@ -7,6 +7,7 @@ const displayTableData = (data: [User], tableRef: any, init?: boolean) => {
       tableRef.deleteRow(index);
     }
     let newRow = tableRef?.insertRow(index);
+    newRow.dataset.entryid = user.id;
 
     //insert cells for row, gender and age
     let row = newRow.insertCell(0);
