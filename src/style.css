@@ -81,7 +81,8 @@ tbody tr:nth-child(even) {
 }
 
 .btn-group button:disabled {
-    pointer-events: none;
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 .btn-group label {
