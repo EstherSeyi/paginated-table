@@ -16,8 +16,8 @@ const startApp = async () => {
   const prevButton = document.querySelector("#prev") as HTMLButtonElement;
   const pageview = document.querySelector("#pageview") as HTMLLabelElement;
 
-  prevButton.disabled = true;
   errorRef.innerHTML = "";
+  prevButton.disabled = true;
 
   /**
    * onClick of next button
@@ -101,8 +101,12 @@ const startApp = async () => {
       },
       () => {
         prevButton.innerHTML = "Previous";
-        prevButton.disabled = false;
         nextButton.disabled = false;
+        if (pageview.innerHTML === "Showing Page 1") {
+          prevButton.disabled = true;
+        } else {
+          prevButton.disabled = false;
+        }
       }
     );
 
