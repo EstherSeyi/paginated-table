@@ -1,8 +1,11 @@
 const fetchData = (
   req: string,
   onSuccess: (data: any) => void,
-  onError: (error: string) => void
+  onError: (error: string) => void,
+  onLoad: () => void,
+  stopLoad: () => void
 ) => {
+  onLoad();
   return fetch(req)
     .then((response) => {
       if (!response.ok) {
@@ -13,11 +16,13 @@ const fetchData = (
     })
     .then((response) => {
       onSuccess(response?.results);
+      stopLoad();
       return response;
     })
     .catch((error) => {
       console.error(error);
       onError(error.message);
+      stopLoad();
     });
 };
 
