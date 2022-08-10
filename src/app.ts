@@ -60,7 +60,11 @@ const startApp = async () => {
         () => {
           nextButton.innerHTML = "Next";
           prevButton.disabled = false;
-          nextButton.disabled = false;
+          if (!state.availableData.paging.hasOwnProperty("next")) {
+            nextButton.disabled = true;
+          } else {
+            nextButton.disabled = false;
+          }
         }
       );
     }
