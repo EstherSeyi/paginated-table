@@ -9,7 +9,7 @@ const startApp = async () => {
     },
   };
 
-  // Get a reference to the table, error and buttons
+  // Get a reference to the table, error, buttons, and pageview labels
   const tableRef: any = document.querySelector("#pag-table > tbody");
   const errorRef: any = document.querySelector("#error");
   const nextButton = document.querySelector("#next") as HTMLButtonElement;
@@ -68,7 +68,7 @@ const startApp = async () => {
   });
 
   /**
-   * onClick of prev button
+   * onClick of previous button
    */
   prevButton?.addEventListener("click", async () => {
     if (state.currentPage === 1) {
@@ -109,6 +109,7 @@ const startApp = async () => {
     state.currentPage--;
   });
 
+  // Fetch data on page load
   await fetchData(
     "https://randomapi.com/api/8csrgnjw?key=LEIX-GF3O-AG7I-6J84",
     (response) => {
