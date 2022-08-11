@@ -10,9 +10,7 @@ const startApp = async () => {
   };
 
   // Get a reference to the table, error, buttons, and pageview labels
-  const tableRef = document.querySelector(
-    "#pag-table > tbody",
-  ) as HTMLTableSectionElement;
+  const tableRef = document.querySelector("#pag-table > tbody") as HTMLTableSectionElement;
   const errorRef = document.querySelector("#error") as HTMLElement;
   const nextButton = document.querySelector("#next") as HTMLButtonElement;
   const prevButton = document.querySelector("#prev") as HTMLButtonElement;
@@ -25,9 +23,7 @@ const startApp = async () => {
    * onClick of next button
    */
   nextButton?.addEventListener("click", async () => {
-    if (
-      !Object.prototype.hasOwnProperty.call(state.availableData.paging, "next")
-    ) {
+    if (!Object.prototype.hasOwnProperty.call(state.availableData.paging, "next")) {
       nextButton.disabled = true;
       return;
     }
@@ -36,10 +32,7 @@ const startApp = async () => {
 
     const nextPage = state.currentPage + 1;
 
-    const hasNextPageProp = Object.prototype.hasOwnProperty.call(
-      state.availableData,
-      nextPage
-    );
+    const hasNextPageProp = Object.prototype.hasOwnProperty.call(state.availableData, nextPage);
 
     if (hasNextPageProp) {
       // if data is available for prev fetching
