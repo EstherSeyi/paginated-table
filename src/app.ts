@@ -3,15 +3,17 @@ import displayTableData from "./helpers/display-table";
 
 const startApp = async () => {
   const state = {
-    currentPage: 1,
     availableData: {
       paging: {},
     },
+    currentPage: 1,
   };
 
   // Get a reference to the table, error, buttons, and pageview labels
-  const tableRef: any = document.querySelector("#pag-table > tbody");
-  const errorRef: any = document.querySelector("#error");
+  const tableRef = document.querySelector(
+    "#pag-table > tbody"
+  ) as HTMLTableSectionElement;
+  const errorRef = document.querySelector("#error") as HTMLElement;
   const nextButton = document.querySelector("#next") as HTMLButtonElement;
   const prevButton = document.querySelector("#prev") as HTMLButtonElement;
   const pageview = document.querySelector("#pageview") as HTMLLabelElement;
