@@ -49,22 +49,29 @@ tbody tr:nth-child(even) {
 
 .btn-group button {
   background-color: #04aa6d;
+
   /* Green background */
   border: 1px solid green;
+
   /* Green border */
   color: white;
+
   /* White text */
   padding: 10px 24px;
+
   /* Some padding */
   cursor: pointer;
+
   /* Pointer/hand icon */
   float: left;
+
   /* Float the buttons side by side */
   pointer-events: all;
 }
 
 .btn-group button:not(:last-child) {
   border-right: none;
+
   /* Prevent double borders */
 }
 
