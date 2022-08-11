@@ -6,13 +6,13 @@ const displayTableData = (data: [User], tableRef: any, init?: boolean) => {
     if (!init) {
       tableRef.deleteRow(index);
     }
-    let newRow = tableRef?.insertRow(index);
+    const newRow = tableRef?.insertRow(index);
     newRow.dataset.entryid = user.id;
 
     //insert cells for row, gender and age
-    let row = newRow.insertCell(0);
-    let gender = newRow.insertCell(1);
-    let age = newRow.insertCell(2);
+    const row = newRow.insertCell(0);
+    const gender = newRow.insertCell(1);
+    const age = newRow.insertCell(2);
 
     row.appendChild(document.createTextNode(`${user.row}`));
     gender.appendChild(document.createTextNode(user.gender));
