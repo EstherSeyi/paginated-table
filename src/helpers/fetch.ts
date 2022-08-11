@@ -1,6 +1,8 @@
+import { Data } from "../types";
+
 const fetchData = (
   req: string,
-  onSuccess: (data: any) => void,
+  onSuccess: (data: Data[]) => void,
   onError: (error: string) => void,
   onLoad: () => void,
   stopLoad: () => void
@@ -16,12 +18,13 @@ const fetchData = (
     })
     .then((response) => {
       onSuccess(response?.results);
-      stopLoad();
       return response;
     })
     .catch((error) => {
       console.error(error);
       onError(error.message);
+    })
+    .finally(() => {
       stopLoad();
     });
 };

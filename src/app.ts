@@ -1,5 +1,5 @@
-import fetchData from "./helpers/fetch";
 import displayTableData from "./helpers/display-table";
+import fetchData from "./helpers/fetch";
 
 const startApp = async () => {
   const state = {

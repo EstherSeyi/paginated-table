@@ -1,6 +1,10 @@
 import { User } from "../types";
 
-const displayTableData = (data: [User], tableRef: any, init?: boolean) => {
+const displayTableData = (
+  data: User[],
+  tableRef: HTMLTableSectionElement,
+  init?: boolean
+) => {
   data.forEach((user: User, index: number) => {
     // Insert a row at the end of the table
     if (!init) {

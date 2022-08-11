@@ -4,3 +4,12 @@ export type User = {
   id: string;
   row: number;
 };
+
+export type Data = {
+  [key: string]: User[];
+} & {
+  paging: {
+    next?: string;
+    previous?: string;
+  };
+};
