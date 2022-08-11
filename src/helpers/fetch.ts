@@ -11,6 +11,7 @@ const fetchData = (
   return fetch(req)
     .then((response) => {
       if (!response.ok) {
+        // throw error if response not ok
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
