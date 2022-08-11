@@ -11,7 +11,7 @@ const startApp = async () => {
 
   // Get a reference to the table, error, buttons, and pageview labels
   const tableRef = document.querySelector(
-    "#pag-table > tbody"
+    "#pag-table > tbody",
   ) as HTMLTableSectionElement;
   const errorRef = document.querySelector("#error") as HTMLElement;
   const nextButton = document.querySelector("#next") as HTMLButtonElement;
