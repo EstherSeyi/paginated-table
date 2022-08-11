@@ -76,7 +76,7 @@ tbody tr:nth-child(even) {
 }
 
 /* Clear floats (clearfix hack) */
-.btn-group:after {
+.btn-group::after {
   content: "";
   clear: both;
   display: table;
