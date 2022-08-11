@@ -25,7 +25,9 @@ const startApp = async () => {
    * onClick of next button
    */
   nextButton?.addEventListener("click", async () => {
-    if (!state.availableData.paging.hasOwnProperty("next")) {
+    if (
+      !Object.prototype.hasOwnProperty.call(state.availableData.paging, "next")
+    ) {
       nextButton.disabled = true;
       return;
     }
@@ -34,7 +36,12 @@ const startApp = async () => {
 
     const nextPage = state.currentPage + 1;
 
-    if (state.availableData.hasOwnProperty(nextPage)) {
+    const hasNextPageProp = Object.prototype.hasOwnProperty.call(
+      state.availableData,
+      nextPage
+    );
+
+    if (hasNextPageProp) {
       // if data is available for prev fetching
       displayTableData(state.availableData[`${nextPage}`], tableRef);
       pageview.dataset.pageview = `${nextPage}`;
@@ -62,7 +69,12 @@ const startApp = async () => {
         () => {
           nextButton.innerHTML = "Next";
           prevButton.disabled = false;
-          if (!state.availableData.paging.hasOwnProperty("next")) {
+          if (
+            !Object.prototype.hasOwnProperty.call(
+              state.availableData.paging,
+              "next"
+            )
+          ) {
             nextButton.disabled = true;
           } else {
             nextButton.disabled = false;
