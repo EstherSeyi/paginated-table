@@ -127,7 +127,6 @@ const startApp = async () => {
         }
       }
     );
-    //
 
     state.currentPage--;
   });
