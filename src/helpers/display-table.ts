@@ -1,6 +1,6 @@
 import { User } from "../types";
 
-const displayTableData = (
+export const displayTableData = (
   data: User[],
   tableRef: HTMLTableSectionElement,
   init?: boolean
@@ -23,5 +23,3 @@ const displayTableData = (
     age.appendChild(document.createTextNode(`${user.age}`));
   });
 };
-
-export default displayTableData;

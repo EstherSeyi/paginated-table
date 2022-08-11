@@ -1,6 +1,6 @@
 import { Data } from "../types";
 
-const fetchData = (
+export const fetchData = (
   req: string,
   onSuccess: (data: Data[]) => void,
   onError: (error: string) => void,
@@ -29,5 +29,3 @@ const fetchData = (
       stopLoad();
     });
 };
-
-export default fetchData;
