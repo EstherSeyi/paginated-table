@@ -82,7 +82,7 @@ const startApp = async () => {
         }
       );
     }
-    state.currentPage++;
+    state.currentPage = nextPage;
   });
 
   /**
@@ -128,7 +128,7 @@ const startApp = async () => {
       }
     );
 
-    state.currentPage--;
+    state.currentPage = prevPage;
   });
 
   // Fetch data on page load
